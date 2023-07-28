@@ -25,15 +25,24 @@ const seedDB = async () => {
         const camp = new Campground({
             author: '64a47031b294cdaf028d0b32',
             location: `${cities[random1000].city}, ${cities[random1000].state}`,
-            title: `${sample(descriptors)} ${sample(places)}`, 
-            image: 'https://source.unsplash.com/random/?nature,camping',
+            title: `${sample(descriptors)} ${sample(places)}`,
             description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto libero inventore, consequatur harum, itaque sunt fugiat assumenda delectus odit quam dicta fugit possimus est optio dolores eum, provident laboriosam eos?',
-            price
-        })
+            price,
+            images: [
+                {
+                    url: 'https://res.cloudinary.com/djxomm4es/image/upload/v1690486784/Yelp%20Camp/y4pvj5rvsfkapusqux6c.jpg',
+                    filename: 'Yelp Camp/y4pvj5rvsfkapusqux6c'
+                },
+                {
+                    url: 'https://res.cloudinary.com/djxomm4es/image/upload/v1690486784/Yelp%20Camp/ioykjofiaq62mgzaenvz.jpg',
+                    filename: 'Yelp Camp/ioykjofiaq62mgzaenvz'
+                }
+            ]
+        });
         await camp.save();
     }
 }
 
-seedDB().then( () => {
-    mongoose.connection.close(); 
+seedDB().then(() => {
+    mongoose.connection.close();
 });
