@@ -22,8 +22,7 @@ const userRoutes = require('./routes/users');
 const campgroundsRoutes = require('./routes/campgrounds');
 const reviewsRoutes = require('./routes/reviews');
 
-const dbUrl = process.env.DB_URL;
-// 'mongodb://localhost:27017/yelp-camp'
+const dbUrl = process.env.DB_URL ||'mongodb://localhost:27017/yelp-camp';
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -146,7 +145,7 @@ app.use('/campgrounds', campgroundsRoutes);
 app.use('/campgrounds/:id/reviews', reviewsRoutes);
 
 app.get('/', (req, res) => {
-    res.render('Home')
+    res.render('home')
 });
 
 app.all('*', (req, res, next) => {
